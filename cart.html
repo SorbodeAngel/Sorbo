@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<!-- add RECAPTCHA -->
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Carrito
+{% endblock %}
+
+{% block main %}
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">En Su Carrito: </th>
+        </tr>
+        <tr>
+            <th class="text-center">Artículo</th>
+            <th class="text-start"></th>
+            <th class="text-start">Quantidad</th>
+            <th class="text-start">Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%- for item in cart_list -%}
+        {% set outer_index = loop.index0 %}
+            <tr>
+                <td><img src="data:image/jpeg;base64,{{ cart_list[outer_index].data }}" width="100" height="130"></td>
+                <td class="text-start" id="{{outer_index}}name" name="name">{{cart_list[outer_index].name}}</td>
+                <td class="text-start" name="quantity">
+                    <select id="{{outer_index}}quantitySelect" method="POST">
+                        {% for i in range(21) %}
+                            <option value="{{ i }}" {% if i == cart_list[outer_index].quantity %}selected{% endif %}>{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td class="text-start" id="{{cart_list[outer_index].item_id}}.total_price" name="total_price">{{cart_list[outer_index].total_price}} Pesos Colombiano</td><br>
+            </tr>
+        {%- endfor -%}
+
+        {%- for item in cart_list -%}
+            <script> //with help of CS50.ai
+                document.addEventListener('DOMContentLoaded', function() {
+                    var quantitySelect = document.getElementById('{{loop.index0}}quantitySelect');
+                    let addToCartLink = document.querySelector('.add-to-cart');
+                    var quantity = parseInt('{{ cart_list[loop.index0].quantity}}')
+                        addToCartLink.href = `/add_order?quantity=${quantity}`;
+
+                    quantitySelect.addEventListener('change', function() {
+                        var selectedValue = parseInt(this.value);
+                        var itemPrice = parseInt('{{ cart_list[loop.index0].price }}');
+
+                        addToCartLink.href = `/add_order?quantity=${selectedValue}`;
+
+                        document.getElementById('{{cart_list[loop.index0].item_id}}.total_price').innerText = (selectedValue * itemPrice) + " Pesos Colombiano";
+                        document.getElementById('quantity').innerText = selectedValue;
+                        document.getElementById('final_price').innerText = (selectedValue * itemPrice) + " Pesos Colombiano";
+                    });
+                });
+            </script>
+            {%- endfor -%}
+    </tbody>
+
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Descripción General</th>
+            </tr>
+            <tr>
+                <th class="text-start">Artículo</th>
+                <th class="text-start"></th>
+                <th class="text-start">Quantidad</th>
+                <th class="text-start">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%- for item in cart_list -%}
+            <tr>
+                <td class="text-start" id="name" name="name">{{item.name}}</td>
+                <td class="text-start"></td>
+                <td class="text-start" id="quantity" name="quantity">{{item.quantity }}</td>
+                <td class="text-start" id="final_price" name="final_price">{{item.total_price}} Pesos Colombiano</td>
+            </tr>
+            {%- endfor -%}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a class="btn btn-primary add-to-cart" style="background-color: #fdedba; color: black;" method="post" href="#">
+                    Finalizar Compra
+                    </a>
+                </td>
+            </tr>
+{% endblock %}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<!-- Here I want to tell stories about the origin of the coffee, perhaps introduce the family, etc. -->
+
+<!-- Is it smarter to put the two translations here and copy the JS for changing the language? -->
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Perfil
+{% endblock %}
+
+{% block body_style %}
+    style="background-image: url('project/static/pictures/pagina_cafe.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%;"
+{% endblock %}
+
+{% block main %}
+<div class="accordion">
+    {% if user_id < 2 %}
+    <div class="accordion-item">
+      <button class="accordion-button"><h3>Órdenes Entrantes</h3></button>
+      <div class="accordion-content open">
+        <table id="inc_orders" class="table-striped">
+            {%- for buyer in buyers_info -%}
+            <thead>
+                <tr>
+                    <th class="text-start">Nombre</th>
+                    <th class="text-start">Dirección</th>
+                    <th class="text-start"></th>
+                    <th class="text-start"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-start">{{ buyer.first_name }} {{ buyer.last_name }}</td>
+                    <td class="text-start">{{ buyer.place_id }}</td>
+                    <td class="text-start"></td>
+                    <td class="text-start">
+                </tr>
+            </tbody>
+            <div id="inc_orders" >
+            <table class="table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-start">Artículo</th>
+                        <th class="text-start">Quantidad</th>
+                        <th class="text-start">Precio</th>
+                        <th class="text-start">Resolver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order_list if item.user_id == buyer.user_id %}
+                    <tr>
+                            <td class="text-start" id="name" name="name">{{ item.product_name }}</td>
+                            <td class="text-start" id="quantity" name="quantity">{{ item.quantity }}</td>
+                            <td class="text-start" id="id" name="id">{{ item.price }}</td>
+                            <td class="text-start" id="resolve" name="resolve">
+                            <a class="btn btn-primary add-to-cart" style="background-color: #fdedba; color: black;" href="/resolve_order?sales_id={{ item.sales_id }}">Resolver</a>
+                            </td>
+                    </tr>
+                    {%- endfor -%}
+                </tbody>
+            </div>
+            {%- endfor -%}
+        </table>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="accordion-item">
+      <button class="accordion-button"><h3>Información Personal</h3></button>
+      <div class="accordion-content">
+        <form id="profile" action="/update_profile" method="post">
+            <div class="input-container">
+                <h4>Información Login</h4>
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="{{pers_data.username}}" type="text">
+                <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Contraseña" type="password">
+                <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirmación" type="password">
+            </div>
+            <div class="input-container">
+            <h4>Información Personal</h4>
+                <input class="form-control mx-auto w-auto" id="first_name" name="first_name" placeholder="{{pers_data.first_name}}" type="text">
+                <input class="form-control mx-auto w-auto" id="last_name" name="last_name" placeholder="{{pers_data.last_name}}" type="text">
+                <input class="form-control mx-auto w-auto" id="email" name="email" placeholder="{{pers_data.email}}" type="text">
+            </div>
+            <div class="input-container">
+            <h4>Información Viva</h4>
+            <input class="form-control mx-auto w-auto" id="street" name="street" placeholder="Calle" type="text">
+            <input class="form-control mx-auto w-auto" id="street_no" name="street_no" placeholder="Numeral" type="text">
+            <input class="form-control mx-auto w-auto" id="postal_code" name="postal_code" placeholder="Código Postal" type="text">
+            <input class="form-control mx-auto w-auto" id="city" name="city" placeholder="Cuidad" type="text">
+            <input class="form-control mx-auto w-auto" id="country" name="country" placeholder="País" type="text">
+            </div>
+            <a class="btn btn-primary add-to-cart" style="background-color: #fdedba; color: black;" href="/update_profile">
+                Cambiar
+            </a>
+        </form>
+        </div>
+    </div>
+
+    {% if user_id < 2 %}
+    <div class="accordion-item">
+        <button type="button" class="accordion-button"><h3>Productos en Inventario</h3></button>
+        <div class="accordion-content">
+
+        {% for item in items %}
+            <div class="mb-3" id="item-{{ item.id }}">
+                <div class="item">
+                    <img src="data:image/jpeg;base64,{{ item.data }}" width="100" height="130">
+                </div>
+                <div class="item">
+                    <h3>{{ item.name }}</h3>
+                    <p>Origen: {{ item.origin }}</p>
+                    <p>Información: {{ item.extra_info }}</p>
+                </div>
+                <div class="item">
+                    <a class="btn btn-primary add-to-cart" style="background-color: #fdedba; color: black;" href="/remove_item?item_id={{ item.item_id }}">Eliminar Producto</a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="input-container">
+                <h3>Añadir Producto</h3>
+                <form id="profile-form" action="/upload" method="post" enctype="multipart/form-data">
+                    <input id="name" autocomplete="off" autofocus class="form-control mx-auto w-auto" name="name" placeholder="Nombre" type="text">
+                    <input id="origin" autocomplete="off" autofocus class="form-control mx-auto w-auto" name="origin" placeholder="Origen" type="text">
+                    <input id="price" autocomplete="off" autofocus class="form-control mx-auto w-auto" name="price" placeholder="Precio por Unidad" type="number">
+                    <input id="extra_info" autocomplete="off" autofocus class="form-control mx-auto w-auto" name="extra_info" placeholder="Información" type="text">
+                    <input type="file" name="picture">
+                    <button type="submit" class="btn btn-primary add-to-cart" style="background-color: #fdedba; color: black;">Añadir Producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+    <script>
+    document.querySelectorAll('.accordion-button').forEach(button => {
+        button.addEventListener('click', function() {
+            var content = this.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+
+    // Keep the default open section visible
+    document.querySelectorAll('.accordion-content.open').forEach(content => {
+        content.style.display = 'block';
+        });
+    </script>
+
+
+{% endblock %}

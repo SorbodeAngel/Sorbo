@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<!-- Here I want to tell stories about the origin of the coffee, perhaps introduce the family, etc. -->
+
+<!-- Is it smarter to put the two translations here and copy the JS for changing the language? -->
+
+{% extends "layout.html" %}
+
+{% block body_style %}
+style="background-image: url('project/static/pictures/tienda.png'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%;"
+{% endblock %}
+
+{% block title %}
+    Yay!
+{% endblock %}
+
+{% block main %}
+<h1 id="success">COMPRA EXITOSO!!</h1>
+{% set urls = ['https://giphy.com/embed/RX7N03MEUafW8', 'https://giphy.com/embed/3o7qE2VAxuXWeyvJIY', 'https://giphy.com/embed/3ohjVazBFR12PCzk3e', 'https://giphy.com/embed/3oz8xIbbFutBokoGS4'] %}
+{% set random_url = urls | random %}
+<iframe src="{{ random_url }}" width="400" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+{% endblock %}

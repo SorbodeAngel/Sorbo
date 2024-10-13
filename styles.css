@@ -1,0 +1,218 @@
+
+#static #user .nav-link{
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        left: 85%;
+        width: 9vw;
+        top: 30px;
+        float: right;
+
+        padding: 2px 2px;
+        background-color: #fdedba;
+        border-radius: 10px;
+    }
+
+#static .navbar.navbar-dark {
+        position: absolute;
+        top: 330px;
+
+        background-color: #583716;
+        border: 1px solid black;
+        border-radius: 10px;
+        width: 50vw;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: auto;
+        border-radius: 10px;
+    }
+
+#static #logo {
+        position: absolute;
+        top: 150px;
+
+        width: 25vw;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        font-family: 'Papyrus', Papyrus;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        padding: 2px 25px;
+        padding-top: 20px;
+        padding-bottom: 0px;
+        background-color: #fdedba;
+        border-radius: 10px;
+    }
+
+.mb-3 {
+    background-color: ivory;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    justify-content: left;
+    align-items: left;
+}
+
+.mb-3 > .item {
+    flex: 1;
+    margin: 0 10px;
+}
+
+#txt {
+    background-color: ivory;
+    border: 1px solid black;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.page{
+    background-color: ivory;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: left;
+    align-items: left;
+
+}
+
+#register {
+    background-color: ivory;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: left;
+    align-items: left;
+}
+
+#profile {
+    background-color: ivory;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: left;
+    align-items: left;
+}
+
+#sale {
+    background-color: ivory;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: left;
+    align-items: left;
+}
+
+.input-container{
+    background-color: ivory;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: left;
+    align-items: left;
+}
+
+
+.accordion-button {
+    width: 800px;
+    background-color: ivory;
+    background-color: #f1f1f1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.accordion-content {
+    width: 800px;
+    background-color: #f9f9f9;
+    display: none;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.table-striped{
+    background-color: ivory;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: left;
+    align-items: left;
+    width: 770px;
+    height: auto;
+    font-size: 18px;
+}
+
+#success{
+    background-color: ivory;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: left;
+    align-items: left;
+    width: 80%;
+    height: auto;
+    font-size: 18px;
+}
+
+#orders{
+    width: 89%;
+
+}
+.input-container input {
+    display: inline-block;
+    margin-right: 10px; /* Adjust spacing as needed */
+    margin-bottom: 20px;
+}
+
+main {
+    position: relative;
+    top: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    max-width: 70vw;
+}
+
+input {
+    border: 1px solid black;
+}
+
+button {
+    background-color: ivory;
+    color: black;
+    border: 1px solid black;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-left: 0;
+}

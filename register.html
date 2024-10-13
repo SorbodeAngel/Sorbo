@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<!-- add RECAPTCHA -->
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Registrar
+{% endblock %}
+
+{% block main %}
+<form id="register" action="/register" method="post">
+    <div class="input-container">
+    <h3>Información Login</h3>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Nombre de Usario" type="text">
+        <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Contraseña" type="password">
+        <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirmación" type="password">
+    </div>
+    <div class="input-container">
+    <h3>Información Personal</h3>
+        <input class="form-control mx-auto w-auto" id="first_name" name="first_name" placeholder="Nombre(s)" type="text">
+        <input class="form-control mx-auto w-auto" id="last_name" name="last_name" placeholder="Apellido" type="text">
+        <input class="form-control mx-auto w-auto" id="email" name="email" placeholder="Correo Electronico" type="text">
+    </div>
+    <div class="input-container">
+    <h3>Información Viva</h3>
+        <input class="form-control mx-auto w-auto" id="street" name="street" placeholder="Calle" type="text">
+        <input class="form-control mx-auto w-auto" id="street_no" name="street_no" placeholder="Numeral" type="text">
+        <input class="form-control mx-auto w-auto" id="postal_code" name="postal_code" placeholder="Código Postal" type="text">
+        <br>
+        <input class="form-control mx-auto w-auto" id="city" name="city" placeholder="Cuidad" type="text">
+        <input class="form-control mx-auto w-auto" id="country" name="country" placeholder="País" type="text">
+    </div>
+    <button class="btn btn-primary" type="submit" style="background-color: ivory; color: black; border: 1px solid black;">Registrar</button>
+</form>
+{% endblock %}
+
+

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tienda
+{% endblock %}
+
+{% block main %}
+<div id="shop">
+    {% for item in items %}
+    <div class="mb-3" id="item-{{ item.id }}">
+        <div class="item">
+            <img src="data:image/jpeg;base64,{{ item.data }}" width="100" height="130">
+        </div>
+        <div class="item">
+            <h3>{{ item.name }}</h3>
+            <p>Origen: {{ item.origin }}</p>
+            <p>Información: {{ item.extra_info }}</p>
+        </div>
+        <div class="item">
+            <a class="btn btn-primary add-to-cart" style="background-color: #fdedba; color: black;" href="/add_cart?item_id={{ item.item_id }}&quantity=1">
+                <p>{{ item.price }} Colombian pesos</p>
+                <img src="project/static/pictures/mandje.png" alt="button image" width="40" height="40">
+                Agregar al Carrito
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
